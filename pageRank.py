@@ -41,7 +41,7 @@ class PageRank:
 
 if __name__ == '__main__':
     if len(sys.argv) == 1:
-        print 'Expected input format: python pageRank.py <data_filename> <directed OR undirected>'
+        print('Expected input format: python pageRank.py <data_filename> <directed OR undirected>')
     else:
         filename = sys.argv[1]
         isDirected = False
@@ -52,17 +52,18 @@ if __name__ == '__main__':
         p = PageRank(graph, isDirected)
         p.rank()
 
-        sorted_r = sorted(p.ranks.iteritems(), key=operator.itemgetter(1), reverse=True)
+        # sorted_r = sorted(p.ranks.iteritems(), key=operator.itemgetter(1), reverse=True)    # Python2
+        sorted_r = sorted(p.ranks.items(), key=operator.itemgetter(1), reverse=True)    # Python3
 
         for tup in sorted_r:
-            print '{0:30} :{1:10}'.format(str(tup[0]), tup[1])
+            print('{0:30} :{1:10}'.format(str(tup[0]), tup[1]))
 
  #       for node in graph.nodes():
- #          print node + rank(graph, node)
+ #          print(node + rank(graph, node))
 
             #neighbs = graph.neighbors(node)
-            #print node + " " + str(neighbs)
-            #print random.uniform(0,1)
+            #print(node + " " + str(neighbs))
+            #print(random.uniform(0,1))
 
 def rank(graph, node):
     #V

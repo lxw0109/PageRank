@@ -5,7 +5,7 @@ def parse(filename, isDirected):
     reader = csv.reader(open(filename, 'r'), delimiter=',')
     data = [row for row in reader]
 
-    print "Reading and parsing the data into memory..."
+    print("Reading and parsing the data into memory...")
     if isDirected:
         return parse_directed(data)
     else:
@@ -52,5 +52,5 @@ def format_key(key):
 
 
 def print_results(f, method, results):
-    print method
+    print(method)
 
