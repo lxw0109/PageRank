@@ -25,3 +25,14 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+# output
+directed_page.png
+data/my_NCAA_football.csv
+data/old_my_NCAA_football.csv
+
+# project file
+.idea/
+
+# demos(useless files)
+networkx_demo.py

@@ -11,6 +11,7 @@ def parse(filename, isDirected):
     else:
         return parse_undirected(data)
 
+
 def parse_undirected(data):
     G = nx.Graph()
     nodes = set([row[0] for row in data])
@@ -23,26 +24,33 @@ def parse_undirected(data):
 
     return G
 
+
 def parse_directed(data):
     DG = nx.DiGraph()
 
-    for i, row in enumerate(data):
-
+    for i, row in enumerate(data):    # data: data of each row
         node_a = format_key(row[0])
         node_b = format_key(row[2])
         val_a = digits(row[1])
         val_b = digits(row[3])
 
-        DG.add_edge(node_a, node_b)
+        # lxw Modification
+        # DG.add_edge(node_a, node_b)   # NOTE: this is not right?
+
         if val_a >= val_b:
-            DG.add_path([node_a, node_b])
+            # lxw Modification
+            DG.add_edge(node_b, node_a)    # For each game played, an edge starts at the team that lost the game and ends at the team that won it.
+            # DG.add_path([node_a, node_b])    # For each game played, an edge starts at the team that lost the game and ends at the team that won it.
         else:
-            DG.add_path([node_b, node_a])
+            DG.add_edge(node_a, node_b)    # For each game played, an edge starts at the team that lost the game and ends at the team that won it.
+            # DG.add_path([node_b, node_a])    # For each game played, an edge starts at the team that lost the game and ends at the team that won it.
 
     return DG
 
+
 def digits(val):
     return int(re.sub("\D", "", val))
+
 
 def format_key(key):
     key = key.strip() 
@@ -53,4 +61,5 @@ def format_key(key):
 
 def print_results(f, method, results):
     print(method)
+
 
